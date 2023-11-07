@@ -1,4 +1,7 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import { QueryClientProvider } from '@tanstack/react-query';
+
+import { queryClient } from '~/lib/react-query';
 
 export default function App() {
   return (
@@ -10,7 +13,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <QueryClientProvider client={queryClient}>
+          <Outlet />
+        </QueryClientProvider>
         <ScrollRestoration />
         <LiveReload />
         <Scripts />
