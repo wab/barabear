@@ -8,7 +8,9 @@
     "dev": "vite dev",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
-    "format": "prettier './app/**/*.{js,jsx,ts,tsx}' --write"
+    "format": "prettier './app/**/*.{js,jsx,ts,tsx}' --write",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./app",
+    "lint:fix": "pnpm lint --fix"
   },
   "dependencies": {
     "@remix-run/css-bundle": "^2.2.0",
@@ -22,6 +24,7 @@
   "devDependencies": {
     "@remix-run/dev": "^2.2.0",
     "@remix-run/eslint-config": "^2.2.0",
+    "@total-typescript/ts-reset": "^0.5.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "eslint": "^8.38.0",
