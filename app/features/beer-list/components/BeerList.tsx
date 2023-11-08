@@ -1,6 +1,22 @@
+import { styled } from '~/styled-system/jsx';
 import type { TBeer } from '~/types';
 
 import { BeerCard } from './BeerCard';
+
+const List = styled('ul', {
+  base: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+    gap: 8,
+  },
+});
+
+const Item = styled('li', {
+  base: {
+    display: 'grid',
+    gridTemplateRows: '1fr auto',
+  },
+});
 
 interface BeerListProps {
   items: TBeer[];
@@ -15,13 +31,13 @@ const BeerList: React.FunctionComponent<BeerListProps> = ({
     return <p>{emptyMessage}</p>;
   }
   return (
-    <ul>
+    <List>
       {items.map((beer) => (
-        <li key={beer.id}>
+        <Item key={beer.id}>
           <BeerCard {...beer} />
-        </li>
+        </Item>
       ))}
-    </ul>
+    </List>
   );
 };
 

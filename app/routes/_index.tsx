@@ -1,11 +1,9 @@
-import * as React from 'react';
-
 import { json, type MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { getBeers } from '~/features/beer-list';
-import { BeerRandomSection } from '~/features/beer-random';
 import { BeerSearch } from '~/features/beer-search';
+import { css } from '~/styled-system/css';
 
 export const meta: MetaFunction = () => {
   return [{ title: 'barabear' }, { name: 'description', content: 'Welcome to barabear' }];
@@ -20,14 +18,8 @@ export default function Index() {
   const { initialData } = useLoaderData<typeof loader>();
 
   return (
-    <div
-      style={{
-        fontFamily: 'system-ui, sans-serif',
-        lineHeight: '1.8',
-      }}
-    >
-      <h1>🧸 Welcome to barabear</h1>
-      <BeerRandomSection count={2} />
+    <div>
+      <h1 className={css({ marginBottom: '16px', textStyle: 'title' })}>welcome to barabear</h1>
       <BeerSearch placeholderData={initialData} />
     </div>
   );

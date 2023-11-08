@@ -4,6 +4,7 @@ import { useDebounce } from 'ahooks';
 
 import { Input } from '~/components';
 import { BeerList, useFetchBeers } from '~/features/beer-list';
+import { css } from '~/styled-system/css';
 import type { TBeer } from '~/types';
 
 interface BeerSearchProps {
@@ -34,9 +35,10 @@ const BeerSearch: React.FunctionComponent<BeerSearchProps> = ({ placeholderData 
         type="search"
         value={search}
         onChange={onSearchChange}
+        isLoading={isFetching}
         placeholder="Search for a beer"
+        className={css({ marginBottom: 8 })}
       />
-      {isFetching && <p>fetching...</p>}
 
       <BeerList items={data} />
     </>

@@ -1,6 +1,6 @@
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 
 import { getBeer, BeerDetail } from '~/features/beer-detail';
 
@@ -13,10 +13,5 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function BeerDetailPage() {
   const beer = useLoaderData<typeof loader>();
 
-  return (
-    <div>
-      <Link to="/">👈 Back</Link>
-      <BeerDetail {...beer} />
-    </div>
-  );
+  return <BeerDetail {...beer} />;
 }
