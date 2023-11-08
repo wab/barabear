@@ -1,5 +1,5 @@
 import { json, type MetaFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Link, useLoaderData } from '@remix-run/react';
 
 import { getBeers, useFetchBeers } from '~/features/beer-list';
 
@@ -28,7 +28,7 @@ export default function Index() {
       <ul>
         {data?.map((beer) => (
           <li key={beer.id}>
-            <a href={`/beer/${beer.id}`}>{beer.name}</a>
+            <Link to={`/beers/${beer.id}`}>{beer.name}</Link>
           </li>
         ))}
       </ul>
