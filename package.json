@@ -4,8 +4,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "vite build && vite build --ssr",
-    "dev": "vite dev",
+    "build": "remix build",
+    "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "format": "prettier './app/**/*.{js,jsx,ts,tsx}' --write",

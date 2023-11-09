@@ -1,7 +1,13 @@
+import { cssBundleHref } from '@remix-run/css-bundle';
+import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 
 import { queryClient } from '~/lib/react-query';
+
+export const links: LinksFunction = () => [
+  ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
+];
 
 export default function App() {
   return (
@@ -17,8 +23,8 @@ export default function App() {
           <Outlet />
         </QueryClientProvider>
         <ScrollRestoration />
-        <LiveReload />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
