@@ -2,6 +2,7 @@ import { cssBundleHref } from '@remix-run/css-bundle';
 import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { queryClient } from '~/lib/react-query';
 
@@ -21,6 +22,7 @@ export default function App() {
       <body>
         <QueryClientProvider client={queryClient}>
           <Outlet />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
         <ScrollRestoration />
         <Scripts />

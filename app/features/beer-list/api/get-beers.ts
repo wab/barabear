@@ -5,18 +5,18 @@ import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
 import type { TBeer } from '~/types';
 
 type TGetBeersParams = {
-  page: number;
-  per_page: number;
+  page?: number;
+  per_page?: number;
+  beer_name?: string;
 };
 
-const initialParams: TGetBeersParams = {
-  page: 1,
-  per_page: 14,
-};
-
-const getBeers = async (params: TGetBeersParams = initialParams): Promise<TBeer[]> => {
+const getBeers = async (params?: TGetBeersParams): Promise<TBeer[]> => {
   const result = await axios.get(`https://api.punkapi.com/v2/beers`, {
-    params,
+    params: {
+      page: params?.page ?? 1,
+      per_page: params?.per_page ?? 10,
+      beer_name: params?.beer_name ?? undefined,
+    },
   });
 
   return result.data;
@@ -24,15 +24,21 @@ const getBeers = async (params: TGetBeersParams = initialParams): Promise<TBeer[
 
 type QueryFnType = typeof getBeers;
 
-interface TUseFetchBeers extends QueryConfig<QueryFnType> {
+type TUseFetchBeers = QueryConfig<QueryFnType> & {
   queryParams?: TGetBeersParams;
-}
+};
 
 const useFetchBeers = ({ queryParams, ...config }: TUseFetchBeers) => {
+  const params = {
+    page: queryParams?.page ?? 1,
+    per_page: queryParams?.per_page ?? 10,
+    beer_name: queryParams?.beer_name ?? undefined,
+  };
+
   return useQuery<ExtractFnReturnType<QueryFnType>>({
+    queryKey: ['beers', params],
+    queryFn: () => getBeers(params),
     ...config,
-    queryKey: ['beers', queryParams],
-    queryFn: () => getBeers(queryParams),
   });
 };
 
