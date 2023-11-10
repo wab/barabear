@@ -4,6 +4,7 @@ import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { AnimatePresence } from 'framer-motion';
 
 import { MainLayout, Navigation } from './components';
 import { BeerRandomSection } from './features/beer-random';
@@ -47,7 +48,9 @@ export default function App() {
               <Navigation />
             </MainLayout.Navbar>
             <MainLayout.Content>
-              <Outlet />
+              <AnimatePresence mode="wait" initial={false}>
+                <Outlet />
+              </AnimatePresence>
             </MainLayout.Content>
             <MainLayout.Footer>
               <BeerRandomSection count={2} />

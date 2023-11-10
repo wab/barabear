@@ -1,3 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { styled } from '~/styled-system/jsx';
 import type { TBeer } from '~/types';
 
@@ -11,7 +13,7 @@ const List = styled('ul', {
   },
 });
 
-const Item = styled('li', {
+const Item = styled(motion.li, {
   base: {
     display: 'grid',
     gridTemplateRows: '1fr auto',
@@ -31,13 +33,20 @@ const BeerList: React.FunctionComponent<BeerListProps> = ({
     return <p>{emptyMessage}</p>;
   }
   return (
-    <List>
-      {items.map((beer) => (
-        <Item key={beer.id}>
-          <BeerCard {...beer} />
-        </Item>
-      ))}
-    </List>
+    <AnimatePresence mode="wait" initial={false}>
+      <List>
+        {items.map((beer) => (
+          <Item
+            key={beer.id}
+            initial={{ y: '10%', opacity: 0, rotate: 3 }}
+            animate={{ y: '0', opacity: 1, rotate: 0 }}
+            exit={{ y: '-20%', opacity: 0 }}
+          >
+            <BeerCard {...beer} />
+          </Item>
+        ))}
+      </List>
+    </AnimatePresence>
   );
 };
 

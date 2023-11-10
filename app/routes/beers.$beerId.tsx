@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData, useLocation } from '@remix-run/react';
+import { motion } from 'framer-motion';
 
 import { getBeer, BeerDetail } from '~/features/beer-detail';
 
@@ -12,6 +13,21 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export default function BeerDetailPage() {
   const beer = useLoaderData<typeof loader>();
+  const { pathname } = useLocation();
 
-  return <BeerDetail {...beer} />;
+  return (
+    <motion.div
+      key={pathname}
+      variants={{
+        initial: { y: 20, opacity: 0 },
+        animate: { y: 0, opacity: 1 },
+        exit: { y: 20, opacity: 0 },
+      }}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      <BeerDetail {...beer} />;
+    </motion.div>
+  );
 }
