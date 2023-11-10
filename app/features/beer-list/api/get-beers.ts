@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
 import type { TBeer } from '~/types';
+import { BEER_API_URL } from '~/utils';
 
 type TGetBeersParams = {
   page?: number;
@@ -11,7 +12,7 @@ type TGetBeersParams = {
 };
 
 const getBeers = async (params?: TGetBeersParams): Promise<TBeer[]> => {
-  const result = await axios.get(`https://api.punkapi.com/v2/beers`, {
+  const result = await axios.get(`${BEER_API_URL}/beers`, {
     params: {
       page: params?.page ?? 1,
       per_page: params?.per_page ?? 10,

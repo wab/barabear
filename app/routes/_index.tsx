@@ -4,6 +4,7 @@ import { json, type MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { getBeers } from '~/features/beer-list';
+import { BeerRandomSection } from '~/features/beer-random';
 import { BeerSearch } from '~/features/beer-search';
 
 export const meta: MetaFunction = () => {
@@ -25,8 +26,8 @@ export default function Index() {
         lineHeight: '1.8',
       }}
     >
-      <h1>🍺 Welcome to barabear</h1>
-
+      <h1>🧸 Welcome to barabear</h1>
+      <BeerRandomSection count={2} />
       <BeerSearch placeholderData={initialData} />
     </div>
   );
