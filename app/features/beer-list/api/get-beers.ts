@@ -5,6 +5,8 @@ import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
 import type { TBeer } from '~/types';
 import { BEER_API_URL } from '~/utils';
 
+const getBeersQueryKey = (params?: TGetBeersParams) => ['beers', params].filter(Boolean);
+
 type TGetBeersParams = {
   page?: number;
   per_page?: number;
@@ -37,10 +39,10 @@ const useFetchBeers = ({ queryParams, ...config }: TUseFetchBeers) => {
   };
 
   return useQuery<ExtractFnReturnType<QueryFnType>>({
-    queryKey: ['beers', params],
+    queryKey: getBeersQueryKey(params),
     queryFn: () => getBeers(params),
     ...config,
   });
 };
 
-export { getBeers, useFetchBeers };
+export { getBeers, useFetchBeers, getBeersQueryKey };

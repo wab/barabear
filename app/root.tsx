@@ -1,9 +1,9 @@
+import * as React from 'react';
+
 import type { LinksFunction } from '@remix-run/node'; // or cloudflare/deno
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
-import { queryClient } from '~/lib/react-query';
 
 import { MainLayout, Navigation } from './components';
 import { BeerRandomSection } from './features/beer-random';
@@ -20,6 +20,18 @@ export const links: LinksFunction = () => [
 ];
 
 export default function App() {
+  const [queryClient] = React.useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // With SSR, we usually want to set some default staleTime
+            // above 0 to avoid refetching immediately on the client
+            staleTime: 60 * 1000,
+          },
+        },
+      })
+  );
   return (
     <html lang="en">
       <head>
