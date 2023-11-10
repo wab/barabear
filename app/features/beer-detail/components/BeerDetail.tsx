@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 
 import { css } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
@@ -11,14 +11,16 @@ const Wrapper = styled('article', {
     lg: { display: 'grid', gridTemplateColumns: '20% 1fr', gap: 8 },
 
     '& dl': {
-      marginTop: 8,
-      paddingTop: 8,
-      borderTop: '6px dotted',
-      borderTopColor: 'utOrange',
+      marginTop: 4,
+      paddingTop: 4,
+      display: 'grid',
+      gridTemplateColumns: 'auto 1fr',
+      gap: 2,
     },
     '& dt': {
       fontSize: 'lg',
       fontWeight: 'bold',
+      textTransform: 'uppercase',
     },
     '& dd': {
       fontSize: 'lg',
@@ -41,7 +43,7 @@ const BeerDetail: React.FunctionComponent<TBeer> = (props) => {
           alt={props.name}
           width={200}
           className={css({
-            width: '100px',
+            width: '120px',
             display: 'block',
             lg: { mx: 'auto' },
           })}
@@ -90,20 +92,33 @@ const BeerDetail: React.FunctionComponent<TBeer> = (props) => {
           </span>
         </h2>
 
-        <p className={css({ textStyle: 'lg', maxWidth: '480px' })}>{props.description}</p>
-        <Link
-          to="/"
-          className={css({ fontStyle: 'italic', marginTop: 8, display: 'inline-block' })}
-        >
+        <NavLink to="/" className={css({ my: 8, display: 'inline-block', fontWeight: 'bold' })}>
           👈 back to the list
-        </Link>
+        </NavLink>
+        <p className={css({ textStyle: 'lg', maxWidth: '480px', marginBottom: 4 })}>
+          {props.description}
+        </p>
+        <p
+          className={css({
+            textStyle: 'lg',
+            maxWidth: '480px',
+            padding: 8,
+            borderRadius: 'md',
+            bgct: 'white/80',
+            border: '2px dashed',
+            borderColor: 'prussianBlue',
+          })}
+        >
+          <span className={css({ color: 'utOrange', fontSize: 'xl' })}>🗒️</span>{' '}
+          {props.brewers_tips}
+        </p>
         <dl>
           <dt>abv</dt>
-          <dd>{props.abv}</dd>
+          <dd>👉 {props.abv}</dd>
           <dt>ibu</dt>
-          <dd>{props.ibu}</dd>
+          <dd>👉 {props.ibu}</dd>
           <dt>ebc</dt>
-          <dd>{props.ebc}</dd>
+          <dd>👉 {props.ebc}</dd>
         </dl>
       </div>
     </Wrapper>

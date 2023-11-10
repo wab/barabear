@@ -8,6 +8,7 @@ type TBeer = {
   ibu: number;
   ebc: number;
   food_pairing: string[];
+  brewers_tips: string;
 };
 
 export type { TBeer };

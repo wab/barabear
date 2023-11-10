@@ -5,7 +5,7 @@ import { colors } from './colors';
 import { semanticTokens } from './semantic-tokens';
 import { textStyles } from './text';
 
-export const theme: Config['theme'] = {
+export const theme = {
   extend: {
     tokens: {
       radii: {
@@ -19,6 +19,7 @@ export const theme: Config['theme'] = {
       button,
     },
   },
-};
+} satisfies Config['theme'];
 
 export { globalCss } from './global';
+export { utilities } from './utilities';
