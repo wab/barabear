@@ -1,4 +1,4 @@
-import { Link } from '@remix-run/react';
+import { Link, NavLink } from '@remix-run/react';
 
 import { css } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
@@ -73,9 +73,16 @@ const Navigation = () => {
         <Logo className={css({ fontSize: '2xl', lg: { fontSize: '6xl' } })} />
       </li>
       <li>
-        <Link to="/">
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            css({
+              '& svg': { color: isActive || isPending ? 'white' : 'skyBlue' },
+            })
+          }
+        >
           <IconHome />
-        </Link>
+        </NavLink>
       </li>
       <li>
         <a href="https://github.com/wab/barabear" target="_blank" rel="noreferrer">

@@ -1,6 +1,6 @@
 import { defineConfig } from '@pandacss/dev';
 
-import { theme, globalCss } from './theme';
+import { theme, globalCss, utilities } from './theme';
 
 export default defineConfig({
   // Whether to use css reset
@@ -23,4 +23,5 @@ export default defineConfig({
   jsxFramework: 'react',
 
   globalCss,
+  utilities,
 });

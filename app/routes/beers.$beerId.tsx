@@ -27,7 +27,7 @@ export default function BeerDetailPage() {
       animate="animate"
       exit="exit"
     >
-      <BeerDetail {...beer} />;
+      <BeerDetail {...beer} />
     </motion.div>
   );
 }

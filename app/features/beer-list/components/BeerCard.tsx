@@ -1,6 +1,7 @@
-import { Link } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 
-import { css } from '~/styled-system/css';
+import { Loader } from '~/components';
+import { css, cx } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
 import { button } from '~/styled-system/recipes';
 import type { TBeer } from '~/types';
@@ -54,9 +55,34 @@ const BeerCard: React.FunctionComponent<TBeer> = (props) => {
           {props.tagline}
         </p>
       </div>
-      <Link to={`/beers/${props.id}`} className={button()}>
+      <NavLink
+        to={`/beers/${props.id}`}
+        className={({ isPending }) =>
+          cx(
+            button(),
+            css({
+              opacity: isPending ? 0.5 : 1,
+              cursor: isPending ? 'not-allowed' : 'pointer',
+              '& .loader': {
+                visibility: isPending ? 'visible' : 'hidden',
+                color: 'white',
+              },
+            })
+          )
+        }
+      >
         See detail
-      </Link>
+        <Loader
+          className={cx(
+            'loader',
+            css({
+              width: '1em',
+              height: '1em',
+              marginLeft: 'auto',
+            })
+          )}
+        />
+      </NavLink>
     </Wrapper>
   );
 };
