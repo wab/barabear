@@ -6,6 +6,7 @@ import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query
 import { useDebounce } from 'ahooks';
 
 import { Input } from '~/components';
+import { Suspense } from '~/components/Suspense';
 import { getBeers, getBeersQueryKey } from '~/features/beer-list';
 import { BeerSearch } from '~/features/beer-search';
 import { css } from '~/styled-system/css';
@@ -45,7 +46,9 @@ export default function Index() {
         placeholder="Search for a beer"
         className={css({ marginBottom: 8 })}
       />
-      <BeerSearch value={debouncedValue === '' ? undefined : debouncedValue} />
+      <Suspense>
+        <BeerSearch value={debouncedValue === '' ? undefined : debouncedValue} />
+      </Suspense>
     </HydrationBoundary>
   );
 }

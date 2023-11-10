@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
@@ -38,7 +38,7 @@ const useFetchBeers = ({ queryParams, ...config }: TUseFetchBeers) => {
     beer_name: queryParams?.beer_name ?? undefined,
   };
 
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
+  return useSuspenseQuery<ExtractFnReturnType<QueryFnType>>({
     queryKey: getBeersQueryKey(params),
     queryFn: () => getBeers(params),
     ...config,
