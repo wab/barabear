@@ -25,13 +25,7 @@ interface BeerListProps {
   emptyMessage?: string;
 }
 
-const BeerList: React.FunctionComponent<BeerListProps> = ({
-  items,
-  emptyMessage = 'No beers found.',
-}) => {
-  if (!items.length) {
-    return <p>{emptyMessage}</p>;
-  }
+const BeerList: React.FunctionComponent<BeerListProps> = ({ items }) => {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <List>

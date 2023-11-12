@@ -41,6 +41,7 @@ const useFetchBeers = ({ queryParams, ...config }: TUseFetchBeers) => {
   return useSuspenseQuery<ExtractFnReturnType<QueryFnType>>({
     queryKey: getBeersQueryKey(params),
     queryFn: () => getBeers(params),
+    throwOnError: true,
     ...config,
   });
 };

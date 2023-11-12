@@ -10,4 +10,5 @@ export const beerFactory = (id: number): TBeer => ({
   ibu: id,
   ebc: id,
   food_pairing: [`Food ${id}`],
+  brewers_tips: `Brewers tips ${id}`,
 });

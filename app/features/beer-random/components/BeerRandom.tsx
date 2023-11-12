@@ -17,13 +17,14 @@ const StyledLink = styled(Link, {
 const BeerRandom: React.FunctionComponent<{
   id: number;
 }> = (props) => {
-  const { data, refetch } = useFetchRadomBeer(props.id);
+  const { data, refetch, status } = useFetchRadomBeer(props.id);
 
   useInterval(() => {
     refetch();
   }, 10000);
 
-  if (!data) return null;
+  if (status === 'pending') return null;
+  if (status === 'error') return <div className={css({ color: 'red.500' })}>oops</div>;
 
   const beer = data[0];
   return (

@@ -5,6 +5,7 @@ import { css } from '~/styled-system/css';
 
 const FallBack = () => (
   <div
+    aria-label="loading"
     className={css({
       width: '100%',
       height: '100%',

@@ -3,12 +3,8 @@ import * as React from 'react';
 import { json, type MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { useDebounce } from 'ahooks';
 
-import { Input } from '~/components';
-import { Suspense } from '~/components/Suspense';
-import { getBeers, getBeersQueryKey } from '~/features/beer-list';
-import { BeerSearch } from '~/features/beer-search';
+import { getBeers, getBeersQueryKey, BeerSearch } from '~/features/beer-search';
 import { css } from '~/styled-system/css';
 
 export const meta: MetaFunction = () => {
@@ -29,26 +25,10 @@ export async function loader() {
 export default function Index() {
   const { dehydratedState } = useLoaderData<typeof loader>();
 
-  const [search, setSearch] = React.useState('');
-  const debouncedValue = useDebounce(search, { wait: 300 });
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const term = e.target.value;
-    setSearch(term);
-  };
-
   return (
     <HydrationBoundary state={dehydratedState}>
       <h1 className={css({ marginBottom: '16px', textStyle: 'title' })}>welcome to barabear</h1>
-      <Input
-        type="search"
-        value={search}
-        onChange={onSearchChange}
-        placeholder="Search for a beer"
-        className={css({ marginBottom: 8 })}
-      />
-      <Suspense>
-        <BeerSearch value={debouncedValue === '' ? undefined : debouncedValue} />
-      </Suspense>
+      <BeerSearch />
     </HydrationBoundary>
   );
 }
