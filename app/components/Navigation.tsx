@@ -1,4 +1,4 @@
-import { Link, NavLink } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 
 import { css } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
@@ -49,6 +49,8 @@ const IconHome: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (pro
     xmlSpace="preserve"
     viewBox="0 0 495.398 495.398"
     fill="currentColor"
+    width={30}
+    height={30}
     {...props}
   >
     <path d="m487.083 225.514-75.08-75.08v-86.73c0-15.682-12.708-28.391-28.413-28.391-15.669 0-28.377 12.709-28.377 28.391v29.941L299.31 37.74c-27.639-27.624-75.694-27.575-103.27.05L8.312 225.514c-11.082 11.104-11.082 29.071 0 40.158 11.087 11.101 29.089 11.101 40.172 0l187.71-187.729c6.115-6.083 16.893-6.083 22.976-.018l187.742 187.747a28.337 28.337 0 0 0 20.081 8.312c7.271 0 14.541-2.764 20.091-8.312 11.086-11.086 11.086-29.053-.001-40.158z" />
@@ -56,7 +58,7 @@ const IconHome: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (pro
   </svg>
 );
 const IconGithub: React.FunctionComponent<React.HTMLAttributes<SVGElement>> = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width={30} height={30} {...props}>
     <title>github</title>
     <path
       fill="currentColor"

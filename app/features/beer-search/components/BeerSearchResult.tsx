@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Loader } from '~/components';
+import { Loader } from '~/components/Loader';
 
 import { useFetchBeers } from '../api/get-beers';
 

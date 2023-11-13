@@ -6,7 +6,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AnimatePresence } from 'framer-motion';
 
-import { MainLayout, Navigation } from './components';
+import { MainLayout } from './components/MainLayout';
+import { Navigation } from './components/Navigation';
 import { BeerRandomSection } from './features/beer-random';
 import styles from './index.css';
 

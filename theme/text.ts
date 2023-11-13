@@ -9,8 +9,8 @@ export const textStyles = defineTextStyles({
       fontSize: '40px',
       lineHeight: '1.5',
       letterSpacing: '0',
-      textDecoration: 'None',
-      textTransform: 'None',
+      textDecoration: 'none',
+      textTransform: 'none',
     },
   },
 });

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { useDebounce } from 'ahooks';
 
-import { Input } from '~/components';
+import { Input } from '~/components/Input';
 import { Suspense } from '~/components/Suspense';
 import { css } from '~/styled-system/css';
 

@@ -1,5 +1,6 @@
 import { NavLink } from '@remix-run/react';
 
+import { PageTitle } from '~/components/PageTitle';
 import { css } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
 import type { TBeer } from '~/types';
@@ -50,7 +51,7 @@ const BeerDetail: React.FunctionComponent<TBeer> = (props) => {
         />
       </div>
       <div>
-        <h1 className={css({ textStyle: 'title' })}>{props.name}</h1>
+        <PageTitle>{props.name}</PageTitle>
         <h2
           className={css({
             position: 'relative',
