@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { styled } from '~/styled-system/jsx';
-import type { TBeer } from '~/types';
 
 import { BeerCard } from './BeerCard';
 

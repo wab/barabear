@@ -2,7 +2,6 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
-import type { TBeer } from '~/types';
 import { BEER_API_URL } from '~/utils';
 
 const getBeersQueryKey = (params?: TGetBeersParams) => ['beers', params].filter(Boolean);

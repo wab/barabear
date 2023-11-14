@@ -1,5 +1,5 @@
 {
-  "include": ["styled-system", "remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["styled-system", "remix.env.d.ts", "./types/reset.d.ts","./types/beer.d.ts",  "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,

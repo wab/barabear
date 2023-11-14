@@ -10,5 +10,3 @@ type TBeer = {
   food_pairing: string[];
   brewers_tips: string;
 };
-
-export type { TBeer };

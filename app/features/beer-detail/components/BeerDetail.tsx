@@ -3,7 +3,6 @@ import { NavLink } from '@remix-run/react';
 import { PageTitle } from '~/components/PageTitle';
 import { css } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
-import type { TBeer } from '~/types';
 import { BEER_IMAGE_PLACEHOLDER } from '~/utils';
 
 const Wrapper = styled('article', {

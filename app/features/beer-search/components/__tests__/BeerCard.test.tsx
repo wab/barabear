@@ -2,7 +2,6 @@ import { createRemixStub } from '@remix-run/testing';
 
 import { beerFactory } from '~/test/factory';
 import { render, screen } from '~/test/utils';
-import type { TBeer } from '~/types';
 
 import { BeerCard } from '../BeerCard';
 

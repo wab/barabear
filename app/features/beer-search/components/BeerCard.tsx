@@ -4,7 +4,6 @@ import { Loader } from '~/components/Loader';
 import { css, cx } from '~/styled-system/css';
 import { styled } from '~/styled-system/jsx';
 import { button } from '~/styled-system/recipes';
-import type { TBeer } from '~/types';
 import { BEER_IMAGE_PLACEHOLDER } from '~/utils';
 
 const Wrapper = styled('article', {

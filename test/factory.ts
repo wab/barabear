@@ -1,5 +1,3 @@
-import type { TBeer } from '~/types';
-
 export const beerFactory = (id: number): TBeer => ({
   id,
   name: `Beer ${id}`,
