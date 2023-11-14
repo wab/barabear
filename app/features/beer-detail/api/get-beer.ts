@@ -1,23 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-import type { ExtractFnReturnType, QueryConfig } from '~/lib/react-query';
 import { BEER_API_URL } from '~/utils';
 
-const getBeer = async (beerId: string): Promise<TBeer[]> => {
+const getBeer = async (beerId?: string): Promise<TBeer[]> => {
   const result = await axios.get(`${BEER_API_URL}/beers/${beerId}`);
 
   return result.data;
 };
 
-type QueryFnType = typeof getBeer;
+const beerDetailQuery = (beerId?: string) => ({
+  queryKey: ['beers', 'detail', beerId],
+  queryFn: async () => getBeer(beerId),
+});
 
-const useFetchBeer = (beerId: string, config?: QueryConfig<QueryFnType>) => {
-  return useQuery<ExtractFnReturnType<QueryFnType>>({
-    ...config,
-    queryKey: ['beers', beerId],
-    queryFn: () => getBeer(beerId),
-  });
-};
-
-export { getBeer, useFetchBeer };
+export { beerDetailQuery };

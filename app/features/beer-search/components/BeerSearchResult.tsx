@@ -1,22 +1,20 @@
 import * as React from 'react';
 
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { Loader } from '~/components/Loader';
 
-import { useFetchBeers } from '../api/get-beers';
+import { beersQuery } from '../api/get-beers';
 
 import { BeerList } from './BeerList';
 import { EmptyResultMessage } from './EmptyResultMessage';
 
 interface BeerSearchProps {
   value?: string;
+  initialData?: TBeer[];
 }
 const BeerSearchResult: React.FunctionComponent<BeerSearchProps> = ({ value }) => {
-  const { data, status, isRefetching } = useFetchBeers({
-    enabled: Boolean(value),
-    queryParams: {
-      beer_name: value,
-    },
-  });
+  const { data, status, isRefetching } = useSuspenseQuery(beersQuery(value));
 
   if (status === 'error') return <div>oops</div>;
   if (isRefetching) return <Loader />;

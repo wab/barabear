@@ -1,23 +1,39 @@
-import type { LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import { useLoaderData, useLocation } from '@remix-run/react';
+import type { MetaFunction, LoaderFunctionArgs } from '@remix-run/node';
+import { useParams } from '@remix-run/react';
+import { QueryClient, useSuspenseQuery, dehydrate } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 
-import { getBeer, BeerDetail } from '~/features/beer-detail';
+import { beerDetailQuery, BeerDetail } from '~/features/beer-detail';
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const beer = await getBeer(params.beerId ?? '');
-  if (!beer) throw new Response('', { status: 404 });
-  return json(beer[0]);
+  const queryClient = new QueryClient();
+  const result = await queryClient.ensureQueryData(beerDetailQuery(params.beerId));
+
+  return json({
+    dehydratedState: dehydrate(queryClient),
+    beer: result[0],
+  });
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  if (!data)
+    return [{ title: 'barabear' }, { name: 'description', content: 'Welcome to barabear' }];
+  return [
+    { title: `${data.beer.name} | barabear` },
+    { name: 'description', content: data.beer.tagline },
+  ];
+};
+
 export default function BeerDetailPage() {
-  const beer = useLoaderData<typeof loader>();
-  const { pathname } = useLocation();
+  const params = useParams<{ beerId: string }>();
+  const { data: beer } = useSuspenseQuery({
+    ...beerDetailQuery(params.beerId),
+  });
 
   return (
     <motion.div
-      key={pathname}
+      key={params.beerId}
       variants={{
         initial: { y: 20, opacity: 0 },
         animate: { y: 0, opacity: 1 },
@@ -27,7 +43,7 @@ export default function BeerDetailPage() {
       animate="animate"
       exit="exit"
     >
-      <BeerDetail {...beer} />
+      <BeerDetail {...beer[0]} />
     </motion.div>
   );
 }
