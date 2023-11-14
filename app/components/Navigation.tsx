@@ -83,12 +83,12 @@ const Navigation = () => {
             })
           }
         >
-          <IconHome />
+          <IconHome aria-label="homepage" />
         </NavLink>
       </li>
       <li>
         <a href="https://github.com/wab/barabear" target="_blank" rel="noreferrer">
-          <IconGithub />
+          <IconGithub aria-label="github repository" />
         </a>
       </li>
     </Wrapper>

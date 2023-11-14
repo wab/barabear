@@ -30,25 +30,37 @@ const Wrapper = styled('article', {
   },
 });
 
+const Picture = styled('picture', {
+  base: {
+    display: 'block',
+    p: 4,
+    width: '30%',
+    lg: { width: '100%' },
+
+    '& img': {
+      aspectRatio: '8 / 20',
+      width: '100%',
+      objectFit: 'contain',
+    },
+  },
+});
+
 const BeerDetail: React.FunctionComponent<TBeer> = (props) => {
   return (
     <Wrapper>
-      <div
-        className={css({
-          p: 8,
-        })}
-      >
+      <Picture>
         <img
           src={props.image_url ?? BEER_IMAGE_PLACEHOLDER}
           alt={props.name}
-          width={200}
+          width={120}
           className={css({
             width: '120px',
             display: 'block',
             lg: { mx: 'auto' },
           })}
         />
-      </div>
+      </Picture>
+
       <div>
         <PageTitle>{props.name}</PageTitle>
         <h2
