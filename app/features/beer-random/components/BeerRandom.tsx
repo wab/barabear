@@ -1,5 +1,4 @@
 import { Link } from '@remix-run/react';
-import { useInterval } from 'ahooks';
 import { motion } from 'framer-motion';
 
 import { css } from '~/styled-system/css';
@@ -17,11 +16,10 @@ const StyledLink = styled(Link, {
 const BeerRandom: React.FunctionComponent<{
   id: number;
 }> = (props) => {
-  const { data, refetch, status } = useFetchRadomBeer(props.id);
-
-  useInterval(() => {
-    refetch();
-  }, 10000);
+  const { data, status } = useFetchRadomBeer(props.id, {
+    refetchIntervalInBackground: true,
+    refetchInterval: 10000,
+  });
 
   if (status === 'pending') return null;
   if (status === 'error') return <div className={css({ color: 'red.500' })}>oops</div>;
